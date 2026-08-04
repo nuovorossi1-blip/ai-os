@@ -49,6 +49,28 @@ del progetto si aggiorna da sola ogni volta che un'AI finisce un lavoro.
 
 ---
 
+## Se l'AI non riesce a leggere questo repository
+
+Molte chat via browser non hanno accesso a GitHub. In quel caso ti diranno
+che il repository non è accessibile — anche quando è pubblico, come questo.
+
+La soluzione è in [`INCOLLA_QUESTO.md`](./INCOLLA_QUESTO.md): contiene una
+versione compatta del protocollo da copiare e incollare direttamente nella
+chat. Funziona con qualsiasi AI.
+
+Attenzione però a cosa puoi aspettarti:
+
+| Cosa sa fare l'AI | Cosa ottieni |
+|---|---|
+| Legge e scrive su GitHub | Tutto: domande, codice, repository, pubblicazione, memoria salvata |
+| Legge soltanto | Il riepilogo di `/handoff` è completo, ma le modifiche le carichi tu |
+| Non accede a GitHub | Ti fa le domande giuste e ti dà il codice, ma lo metti online tu |
+
+Il protocollo è lo stesso per tutte. Quello che cambia è quanto lavoro l'AI
+può togliere dalle tue mani.
+
+---
+
 ## Cosa c'è in questo repository
 
 | File | Cosa contiene |
@@ -56,6 +78,7 @@ del progetto si aggiorna da sola ogni volta che un'AI finisce un lavoro.
 | `AIOS_PROTOCOL.md` | Il protocollo vero e proprio: la procedura che l'AI deve seguire |
 | `AGENTS.md` | Rimando al protocollo, letto in automatico da molti strumenti |
 | `.aios/templates/` | I due file di memoria che vengono creati dentro ogni progetto |
+| `INCOLLA_QUESTO.md` | Versione compatta da incollare quando l'AI non legge i file |
 
 Sono file di testo, non un programma. Non c'è niente da installare, niente da
 eseguire, nessun terminale da aprire.
