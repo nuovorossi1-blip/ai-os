@@ -1,0 +1,58 @@
+{
+  "_comment": "Identita' del progetto per AI-OS. File letto da qualsiasi LLM che riceve il comando /handoff. Cambia raramente. Lo stato corrente sta in AIOS_STATE.md. NON scrivere token o password qui dentro.",
+
+  "protocol_version": "1.1",
+  "aios_reference": "https://github.com/nuovorossi1-blip/ai-os",
+  "aios_protocol_file": "AIOS_PROTOCOL.md",
+
+  "project": {
+    "name": "<nome progetto>",
+    "repository": "https://github.com/<utente>/<repo-progetto>",
+    "objective": "<obiettivo finale, una frase, cosa deve diventare l'app>",
+    "users": "<solo io | gruppo ristretto | pubblico>",
+    "mobile": false
+  },
+
+  "origin": {
+    "type": "created_by_aios",
+    "_type_values": [
+      "created_by_aios",
+      "migrated_to_aios",
+      "upgraded_from_older_aios"
+    ],
+    "date": "<AAAA-MM-GG>",
+    "created_by_model": "<nome del modello che ha creato o adottato il progetto>",
+    "previous_history_available": true,
+    "_note": "previous_history_available = false quando il progetto esisteva prima di AI-OS: in quel caso la storia anteriore all'adozione e' ricostruita, non certa."
+  },
+
+  "stack": {
+    "language": "<es. TypeScript>",
+    "framework": "<es. React + Vite>",
+    "styling": "<es. Tailwind>",
+    "database": "<supabase | nessuno>",
+    "auth": "<supabase-auth | nessuno>"
+  },
+
+  "deploy": {
+    "provider": "<netlify | vercel>",
+    "site_url": "<link pubblico>",
+    "site_id": "<id del sito sul provider, se disponibile>",
+    "auto_deploy_on_push": true
+  },
+
+  "secrets_required": [
+    {
+      "name": "<NOME_VARIABILE>",
+      "where": "<pannello del provider di hosting>",
+      "purpose": "<a cosa serve, in parole semplici>"
+    }
+  ],
+  "_secrets_note": "Qui va SOLO l'elenco dei nomi e dove sono configurate. Mai i valori.",
+
+  "last_session": {
+    "model": "<nome del modello>",
+    "date": "<AAAA-MM-GG>",
+    "summary": "<una riga>"
+  }
+}
