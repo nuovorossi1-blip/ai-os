@@ -422,6 +422,26 @@ Cosa non sono riuscito a capire
 <elenco degli [IGNOTO], oppure "niente">
 ```
 
+**Offerta del modulo Android (solo se pertinente, solo una volta per progetto)**
+
+Se `project.mobile` in `AIOS_PROJECT.json` è vero e il progetto **non ha ancora**
+`MODULO_ANDROID_AUTOAGGIORNANTE.md` applicato (nessun plugin `ApkUpdater`/equivalente
+nel codice), controlla `AIOS_STATE.md` sezione "8. Decisioni prese": se non risulta già
+offerto in una sessione precedente, aggiungi al rapporto, subito prima della domanda di
+chiusura, una riga così:
+
+```
+A proposito: questo progetto potrebbe avere anche un'app Android installabile
+che si aggiorna da sola, senza passare dal Play Store — vuoi che te la aggiunga?
+(Vedi MODULO_ANDROID_AUTOAGGIORNANTE.md nel repository AI-OS di riferimento.)
+```
+
+Qualunque sia la risposta dell'utente al turno successivo (sì, no, non ora, silenzio),
+registrala in `AIOS_STATE.md` sotto "Decisioni prese" prima di fare qualsiasi altra
+cosa: serve a non riproporlo a ogni `/handoff` successivo se ha già detto di no o non
+ha risposto. Se l'utente stesso torna sull'argomento più avanti, l'offerta non è più
+vincolata a questa regola: rispondi normalmente.
+
 E poi la domanda di chiusura, sempre questa:
 
 ```
