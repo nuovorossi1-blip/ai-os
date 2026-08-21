@@ -490,15 +490,30 @@ Regole di manutenzione:
 # SALVATAGGIO AUTOMATICO
 
 Ogni volta che finisci un pezzo di lavoro — anche piccolo, anche una sola
-correzione — prima di rispondere all'utente aggiorni `AIOS_STATE.md`:
+correzione — prima di rispondere all'utente aggiorni `AIOS_STATE.md` con
+tutti e cinque questi punti, non una selezione:
 
-- cosa hai fatto e perché
-- cosa si è rotto durante il lavoro e come l'hai aggiustato
-- quali problemi restano aperti
-- qual è il prossimo passo sensato
-- **il tuo nome di modello e la data**
+1. **Problemi rilevati** — cosa non andava, e la causa vera, non il sintomo.
+   Se un problema segnalato dall'utente non è ancora risolto per davvero,
+   resta scritto come aperto finché non lo è, non finché sembra sistemato.
+2. **Cosa è stato fatto** — la modifica reale, non l'intenzione. Scrivilo
+   solo dopo averla verificata (test, build, lettura del codice vero), mai
+   prima.
+3. **Cosa c'è ancora da fare** — sia il seguito immediato di questo lavoro,
+   sia le voci più vecchie non toccate oggi: non cancellarle solo perché
+   non erano il focus della sessione.
+4. **Dove deve arrivare il progetto** — non basta dire cosa è cambiato:
+   ricollegalo all'obiettivo finale del progetto, così chi legge dopo non
+   deve indovinare perché è stato fatto.
+5. **Cosa deve aspettarsi l'utente** — cosa deve controllare per verificare
+   che il lavoro sia davvero fatto (link da aprire, scenario da provare,
+   dato da guardare), e cosa NON è ancora vero (es. "in una PR draft, non
+   ancora in produzione", "verificato solo con test, non in un browser
+   reale"). Non lasciare mai credere che qualcosa sia live o pronto se non
+   lo è.
 
-e fai commit insieme al codice. Un solo commit, non due.
+Aggiungi anche **il tuo nome di modello e la data**, e fai commit insieme
+al codice. Un solo commit, non due.
 
 L'utente non deve chiedertelo. Se glielo chiedi, hai sbagliato: lui non sa
 che questo file esiste, e non deve saperlo.
