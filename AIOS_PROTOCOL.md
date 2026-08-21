@@ -105,6 +105,12 @@ risponde a più cose insieme, salta le domande già risposte.
    vaga, fai *una* domanda di chiarimento, non tre.)
 3. **Chi la userà?** (solo l'utente / un gruppo ristretto / pubblico)
 4. **Deve funzionare anche da telefono?**
+   Se sì, fai una domanda in più prima di andare avanti: gli basta che il sito si apra
+   bene da telefono, o vuole anche una **vera icona installabile che si aggiorna da
+   sola**, senza passare dal Play Store? Se la seconda, questo progetto ha bisogno del
+   modulo descritto in `MODULO_ANDROID_AUTOAGGIORNANTE.md` (stesso repository di
+   questo protocollo) — leggilo per intero prima di costruire, non improvvisare
+   un sistema di aggiornamento diverso.
 5. **Deve ricordare dei dati fra una visita e l'altra?**
    Se sì → serve un database. Non usare la parola "database" per chiedere:
    chiedi se i dati devono restare salvati.
@@ -206,6 +212,10 @@ Fai tu, in quest'ordine, dichiarando all'utente cosa sta succedendo:
 1. Crea il repository su GitHub.
 2. Scrivi il codice dell'applicazione (funzionante, non uno scheletro
    vuoto).
+2-bis. Se in Fase 1 l'utente ha chiesto un'app Android installabile e
+   auto-aggiornante, applica qui `MODULO_ANDROID_AUTOAGGIORNANTE.md` per intero
+   (Capacitor, plugin nativo, pipeline di build). Non è un'aggiunta rimandabile a
+   dopo: fa parte della fase che stai consegnando oggi.
 3. Scrivi i due file di memoria AI-OS (vedi *I FILE DI MEMORIA* più sotto):
    - `AIOS_PROJECT.json`
    - `AIOS_STATE.md`
