@@ -18,8 +18,8 @@ Alla Fase 1 di `/ai-os new`, quando l'utente risponde sì a "Deve funzionare anc
 telefono?", fai una domanda di chiarimento in più (non automatica: chiedila):
 
 > "Ti basta che il sito si apra bene da telefono, o vuoi anche una vera icona
-> installabile che si aggiorna da sola ogni volta che pubblico una modifica, senza
-> passare dal Play Store?"
+> installabile che mostra subito ogni modifica che pubblico e, quando serve, si
+> aggiorna da sola senza passare dal Play Store?"
 
 Se la seconda, applica questo modulo nella Fase 4 (Creazione), oltre al resto.
 
@@ -96,11 +96,34 @@ Android (es. `app.gymbuilder.mobile`).
    quando l'app gira nel browser normale (`!Capacitor.isNativePlatform()`), con un
    link diretto al file APK pubblicato (`/<app>.apk`).
 
-6. **Una pipeline che costruisce, versiona e pubblica l'APK a ogni modifica**
+6. **Una pipeline che costruisce, versiona e pubblica l'APK quando cambia il guscio**
    (GitHub Actions, es. `build-apk.yml`):
-   - si attiva su ogni push a `main`, **esclusi i file che lei stessa scrive**
-     (`paths-ignore` su `public/<app>.apk`, `public/version.json`, il keystore di
-     debug) — altrimenti loop infinito: la pipeline si ripubblica da sola all'infinito.
+   - **si attiva solo quando cambia il guscio Android**, non a ogni push (scelta
+     dell'utente del 29/10/2026). L'app installata apre il sito online, quindi le
+     modifiche a pagine, stile e server arrivano da sole senza APK nuovo. Con una
+     build a ogni push la versione sale sempre e l'app chiede di aggiornarsi di
+     continuo: successo su Jupiter, 86 APK in 9 giorni. Usa `paths` (non
+     `paths-ignore`) limitato ai file del guscio, più l'avvio a mano:
+     ```yaml
+     on:
+       push:
+         branches: [main]
+         paths:
+           - 'android/**'
+           - 'capacitor.config.*'
+           - 'package.json'
+           - 'package-lock.json'
+           - '.github/workflows/build-apk.yml'
+           # + le cartelle con il codice nativo o la pagina di riserva del guscio
+       workflow_dispatch:
+     ```
+     I file che la pipeline stessa scrive (`public/<app>.apk`, `public/version.json`)
+     restano così fuori dai trigger: niente loop infinito. Se l'APK contiene anche il
+     sito (`webDir` copiato negli asset e nessun `server.url`), il guscio include anche
+     il codice web: in quel caso aggiungi la sua cartella ai `paths`.
+   - un commit che modifica un file in `.github/workflows/` richiede un token GitHub
+     con il permesso `workflow` (`gh auth refresh -h github.com -s workflow`);
+     senza, il push viene rifiutato.
    - usa una **keystore di debug stabile**, generata una volta sola (se non esiste
      ancora nel repository) e riusata sempre. **Fondamentale**: Android rifiuta di
      sovrascrivere un'app già installata se la firma cambia — una keystore diversa a
@@ -156,12 +179,10 @@ installazioni che hanno già quella firma, senza modo di recuperarle.
 - **L'utente deve comunque confermare ogni installazione a mano** (tocco su
   "Installa"): nessun meccanismo, di sistema o costruito da questo modulo, può
   renderlo silenzioso o automatico al 100%.
-- **Ogni push a `main` che tocca il codice dell'app rifà una build e ripropone
-  l'aggiornamento**, anche per modifiche piccole o solo di documentazione se non
-  escluse esplicitamente dal `paths-ignore`. Non è un difetto da correggere di
-  default: è il comportamento voluto (aggiornamenti frequenti), ma va spiegato
-  all'utente la prima volta che succede, non lasciato a scoprirlo da solo chiedendosi
-  perché l'app "continua a chiedere di aggiornarsi".
+- **L'app chiede di aggiornarsi solo quando cambia il guscio Android** (icona,
+  permessi, configurazione Capacitor, codice nativo). Le modifiche al sito si vedono
+  riaprendo l'app, senza installare niente. Va spiegato all'utente la prima volta,
+  così non si aspetta un aggiornamento a ogni novità.
 - **Non è mai verificabile end-to-end da un'AI**: nessun ambiente di lavoro di un LLM
   ha un vero telefono Android con un'app installata sopra. Chi applica questo modulo
   deve scriverlo esplicitamente come "non verificato in un browser/dispositivo reale"
