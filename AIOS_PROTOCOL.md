@@ -93,6 +93,8 @@ I buchi tipici, quelli che le specifiche tecniche dimenticano quasi sempre:
 
 Non chiedere invece dettagli che puoi decidere tu (nomi delle cartelle,
 librerie, versioni). L'utente non è tecnico: quelle scelte sono tue.
+Non chiedere nemmeno la grafica: è quella di `STILE_GRAFICO.md`, salvo che
+la specifica dica altro.
 
 ## Fase 1 — Domande
 
@@ -211,7 +213,10 @@ Fai tu, in quest'ordine, dichiarando all'utente cosa sta succedendo:
 
 1. Crea il repository su GitHub.
 2. Scrivi il codice dell'applicazione (funzionante, non uno scheletro
-   vuoto).
+   vuoto), **con l'aspetto standard di `STILE_GRAFICO.md`** (colori, font,
+   schermata d'avvio e barra da telefono, file pronti in `stile/`). Non
+   chiedere all'utente che grafica vuole: è già deciso. Si cambia solo se
+   lo chiede lui.
 2-bis. Se in Fase 1 l'utente ha chiesto un'app Android installabile e
    auto-aggiornante, applica qui `MODULO_ANDROID_AUTOAGGIORNANTE.md` per intero
    (Capacitor, plugin nativo, pipeline di build). Non è un'aggiunta rimandabile a
