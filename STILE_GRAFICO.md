@@ -4,7 +4,7 @@
 > aspetto**, salvo che l'utente chieda esplicitamente qualcos'altro.
 > Scelta dell'utente del 29/10/2026: *"mi piace lo stile, la grafica e i font usati"*.
 >
-> **È verificato e in produzione**: PronoBlast (`nuovorossi1-blip/PronoBlast-app`,
+> **È verificato e in produzione**: NutriTrack PRO (React + Tailwind, commit 5c83846), PronoBlast (`nuovorossi1-blip/PronoBlast-app`,
 > commit 8031276, React Native Web/Expo) e Jupiter (`nuovorossi1-blip/Jupiter`,
 > commit b90e2e9, HTML/CSS puro). Se lì cambia, questo file va riallineato al
 > codice vero.
@@ -99,6 +99,12 @@ icone hanno un font loro. Vedi `frontend/scripts/inject-pwa-head.js` di PronoBla
 **React + Tailwind** — in `tailwind.config`: `colors.bg #1A1A1A`, `surface #242424`,
 `gold #F5A623`, `coral #FF6B6B`; `fontFamily.sans ['Manrope', …]`,
 `fontFamily.titoli ['"Barlow Condensed"', …]`; `@font-face` da `tokens.css`.
+Per un'app Tailwind esistente (NutriTrack PRO): invece di cambiare le classi nei
+componenti, ridefinisci nel config le scure di `neutral` (700 `#3A3A3A`, 800
+`#2D2D2D`, 900 `#242424`, 950 `#1A1A1A`) e la scala del colore d'accento
+(es. `blue`) con le tonalità dell'oro; il pulsante principale prende il
+gradiente e il testo grafite con una regola CSS. Lascia scritti a mano i
+colori che hanno un significato (macro, vinto/perso).
 
 ## Cosa non fare
 
