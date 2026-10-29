@@ -1,10 +1,11 @@
 # STILE GRAFICO — l'aspetto standard delle app AI-OS
 
-> Modulo referenziato da `AIOS_PROTOCOL.md`. **Ogni app nuova nasce con questo
-> aspetto**, salvo che l'utente chieda esplicitamente qualcos'altro.
+> Modulo referenziato da `AIOS_PROTOCOL.md`. **Obbligatorio**: ogni app, sito o
+> strumento nuovo nasce con questo aspetto, e chi modifica qualcosa di esistente lo
+> usa, salvo che l'utente chieda esplicitamente qualcos'altro.
 > Scelta dell'utente del 29/10/2026: *"mi piace lo stile, la grafica e i font usati"*.
 >
-> **È verificato e in produzione**: NutriTrack PRO (React + Tailwind, commit 5c83846), PronoBlast (`nuovorossi1-blip/PronoBlast-app`,
+> **È verificato e in produzione**: Video con sottotitoli (Tkinter), modelli.redapp.dev (HTML), NutriTrack PRO (React + Tailwind, commit 5c83846), PronoBlast (`nuovorossi1-blip/PronoBlast-app`,
 > commit 8031276, React Native Web/Expo) e Jupiter (`nuovorossi1-blip/Jupiter`,
 > commit b90e2e9, HTML/CSS puro). Se lì cambia, questo file va riallineato al
 > codice vero.
@@ -15,6 +16,7 @@ Il pacchetto pronto da copiare sta in [`stile/`](./stile):
 |---|---|
 | `stile/tokens.css` | colori, font, riquadri a vetro, pulsanti, barra in basso, schermata d'avvio |
 | `stile/fonts/*.woff2` | Manrope (testi) e Barlow Condensed 600-900 (titoli) |
+| `stile/tkinter/genera-ui.py` | immagini (pannelli, pulsanti, icona) per i programmi da PC in Tkinter |
 | `stile/fonts/OFL-*.txt` | licenze dei font (SIL Open Font License: uso libero, anche commerciale) |
 
 ---
@@ -105,6 +107,30 @@ componenti, ridefinisci nel config le scure di `neutral` (700 `#3A3A3A`, 800
 (es. `blue`) con le tonalità dell'oro; il pulsante principale prende il
 gradiente e il testo grafite con una regola CSS. Lascia scritti a mano i
 colori che hanno un significato (macro, vinto/perso).
+
+**Pagina servita da un piccolo server che risponde solo a `/`** (es.
+modelli.redapp.dev, `Remoto/strumenti/modelli-web`) — per non toccare il server
+metti i font dentro la pagina come `data:font/woff2;base64,...` (solo
+`manrope-latin` e `barlow-condensed-800`, circa 60 KB).
+
+**Programma da PC in Python/Tkinter** (es. Video con sottotitoli,
+`Remoto/strumenti/sottotitoli`) — Tk non sa fare gradienti né angoli
+arrotondati: le parti grafiche sono immagini PNG create con
+[`stile/tkinter/genera-ui.py`](./stile/tkinter/genera-ui.py) (pannello a vetro,
+pulsanti a pillola oro-corallo con versione al passaggio del mouse, icona),
+messe su **un solo Canvas** con i campi dentro (`create_window`).
+- Font: installali per l'utente (file `.ttf` in
+  `%LOCALAPPDATA%\Microsoft\Windows\Fonts` + voce in `HKCU\...\Fonts`).
+  Windows registra Manrope (font variabile) come `Manrope ExtraLight <peso>`:
+  usa `Manrope ExtraLight Medium` per il testo, `Manrope ExtraLight ExtraBold`
+  per il grassetto, `Barlow Condensed Black` per i titoli; controlla con
+  `tkinter.font.families()` e ripiega su Segoe UI se mancano.
+- Menu a tendina: tema `clam` di ttk con i colori grafite e la lista oro
+  (`option_add("*TCombobox*Listbox...")`). Il cursore (`Scale`) di Windows non
+  prende i colori: disegnalo sul Canvas (linea grigia, parte piena oro, pallino).
+- Schermata d'avvio: `Toplevel` senza bordi con icona, nome in Barlow oro e un
+  arco che gira; la finestra principale resta nascosta (`withdraw`) finché non
+  è pronta.
 
 ## Cosa non fare
 
